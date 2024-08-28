@@ -1,12 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Cachipun</title>
-    <link rel="stylesheet" href="./assets/js/script.js">
-</head>
-<body>
-    
-</body>
+    <link rel="stylesheet" href="./assets/css/style.css" />
+    <script src="./assets/js/script.js"></script>
+  </head>
+  <body class="bg-light">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-6">
+          <h2 class="text-center">Juego Cachipun</h2>
+
+          <form id="cachipunForm" action="juego.html">
+            <div class="mb-3">
+              <label for="nombre" class="form-label">Ingresa tu nombre</label>
+              <input
+                type="text"
+                class="form-control"
+                id="nombre"
+                placeholder="Ingresa tu nombre"
+                required
+              />
+            </div>
+            <div class="mb-3">
+              <label for="rondas" class="form-label"
+                >¿Cuántas veces quieres jugar?</label
+              >
+              <input
+                type="number"
+                class="form-control"
+                id="rondas"
+                placeholder="Introduce un número"
+                required
+              />
+            </div>
+            <div class="text-center">
+              <button type="submit" class="btn btn-primary">
+                Comenzar a jugar
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </body>
 </html>
