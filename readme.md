@@ -1,6 +1,6 @@
 # Juego Cachipún (Piedra, Papel o Tijera)
 
-[Ver juego aquí](https://alexisenp.github.io/bootcam-juegoCachipun/)
+[Ver juego aquí](https://alexisenp.github.io/bootcamp-juegoCachipun/)
 
 ## Descripción
 
