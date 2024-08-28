@@ -23,9 +23,9 @@ document
 
 /***************** CODIGO PARA CAMBIAR IMAGENES DE LAS OPCIONES DE LA CPU ******/
 const imagenes = [
-  './assets/img/rock.png',
-  './assets/img/paper.png',
-  './assets/img/scissors.png',
+  './assets/img/piedra.png',
+  './assets/img/papel.png',
+  './assets/img/tijeras.png',
 ];
 
 let indiceImagen = 0; // Índice inicial de la imagen
@@ -95,7 +95,7 @@ cuadros.forEach((cuadro) => {
       document.getElementById('mensajeUsuario').textContent = mensaje;
       
       resultados.push({
-        jugada: jugadaActual,
+        jugada: jugadaActual-1,
         usuario: eleccionUsuario,
         cpu: eleccionCPU,
         resultado: mensaje,
@@ -116,7 +116,7 @@ function actualizarContadorJugadas() {
 /***************** INICIO CODIGO PARA SELECCIONAR OPCION DE MAQUINA ******/
 
 function obtenerJugadaMaquina() {
-  let jugadas = ['rock', 'paper', 'scissors'];
+  let jugadas = ['piedra', 'papel', 'tijeras'];
   let indice = Math.floor(Math.random() * 3);
 
   //setea la imagen elegida al azar en el cuadro de la imagen rotativa
@@ -136,9 +136,9 @@ function determinarGanador(eleccionUsuario, eleccionCPU) {
   if (eleccionUsuario === eleccionCPU) {
     return 'Es un empate!';
   } else if (
-    (eleccionUsuario === 'rock' && eleccionCPU === 'scissors') ||
-    (eleccionUsuario === 'paper' && eleccionCPU === 'rock') ||
-    (eleccionUsuario === 'scissors' && eleccionCPU === 'paper')
+    (eleccionUsuario === 'piedra' && eleccionCPU === 'tijeras') ||
+    (eleccionUsuario === 'papel' && eleccionCPU === 'piedra') ||
+    (eleccionUsuario === 'tijeras' && eleccionCPU === 'papel')
   ) {
     return '¡Felicidades, ganaste!';
   } else {
@@ -188,3 +188,7 @@ const verResultados = () => {
         tablaBody.appendChild(fila);
     });
 };
+
+document.getElementById('reiniciarJuego').addEventListener('click', function() {
+    location.reload(); // Recarga la página para reiniciar el juego
+});

@@ -1,5 +1,7 @@
 # Juego Cachipún (Piedra, Papel o Tijera)
 
+[Ver juego aquí](https://alexisenp.github.io/bootcam-juegoCachipun/)
+
 ## Descripción
 
 Este es un juego de Cachipún (Piedra, Papel o Tijera) desarrollado como parte del bootcamp de Desarrollo de Aplicaciones Front-End de Talento Digital. El juego permite al usuario jugar contra la CPU y llevar un registro de los resultados de cada partida.
@@ -16,3 +18,11 @@ Este es un juego de Cachipún (Piedra, Papel o Tijera) desarrollado como parte d
 1. Clona este repositorio en tu máquina local.
    ```bash
    git clone https://github.com/tu_usuario/juego-cachipun.git
+
+
+## Tecnologías Utilizadas
+- **HTML5**: Estructura de la página y los elementos del juego.
+- **CSS3 y Bootstrap**: Estilizado del juego, uso de clases de Bootstrap para una interfaz responsiva y atractiva.
+- **JavaScript**: Lógica del juego, manejo de eventos y actualización dinámica de la interfaz.
+
+![Imagen de muestra del proyecto](./assets/img/image.png)
