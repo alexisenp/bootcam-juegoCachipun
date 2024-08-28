@@ -5,45 +5,130 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Cachipun</title>
     <link rel="stylesheet" href="./assets/css/style.css" />
-    <script src="./assets/js/script.js"></script>
   </head>
   <body class="bg-light">
-    <div class="container">
-      <div class="row justify-content-center">
-        <div class="col-md-6">
-          <h2 class="text-center">Ingreso datos juego cachipun</h2>
+    <section id="ingreso-datos">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-md-6">
+            <h2 class="text-center">Ingreso datos juego cachipun</h2>
 
-          <form id="cachipunForm" action="juego.html">
-            <div class="mb-3">
-              <label for="nombre" class="form-label">Ingresa tu nombre</label>
-              <input
-                type="text"
-                class="form-control"
-                id="nombre"
-                placeholder="Ingresa tu nombre"
-                required
-              />
-            </div>
-            <div class="mb-3">
-              <label for="rondas" class="form-label"
-                >¿Cuántas veces quieres jugar?</label
-              >
-              <input
-                type="number"
-                class="form-control"
-                id="rondas"
-                placeholder="Introduce un número"
-                required
-              />
-            </div>
-            <div class="text-center">
-              <button type="submit" class="btn btn-primary">
-                Comenzar a jugar
-              </button>
-            </div>
-          </form>
+            <form id="cachipunForm">
+              <div class="mb-3">
+                <label for="nombre" class="form-label">Ingresa tu nombre</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="nombre"
+                  placeholder="Ingresa tu nombre"
+                  required
+                />
+              </div>
+              <div class="mb-3">
+                <label for="rondas" class="form-label"
+                  >¿Cuántas veces quieres jugar?</label
+                >
+                <input
+                  type="number"
+                  class="form-control"
+                  id="rondas"
+                  placeholder="Introduce un número"
+                  required
+                />
+              </div>
+              <div class="text-center">
+                <button type="submit" class="btn btn-primary">
+                  Comenzar a jugar
+                </button>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
-    </div>
+    </section>
+
+    <section class="d-none" id="juego-screen">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-md-6">
+            <div class="row">
+              <div class="col-12">
+                <h3 class="text-center">Jugada CPU:</h3>
+                <div class="d-flex justify-content-center">
+                  <div class="opciones__cuadro">
+                    <img
+                      id="imagen-rotativa"
+                      src="./assets/img/paper.png"
+                      alt="rotativa"
+                      class="img-fluid"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="col-12 my-5" id="cuadro-resultado">
+                <div id="contadorJugadas" class="text-center mt-3">
+                  <h4>
+                    Jugada <span id="jugadaActual">1</span> de
+                    <span id="totalJugadas">5</span>
+                  </h4>
+                </div>
+                <div class="text-center mt-3">
+                  <h3 id="mensajeUsuario">¿Cuál será tu próximo movimiento?</h3>
+                </div>
+                <p id="boton-resultado" class="text-center mt-3"></p>
+              </div>
+              <div class="col-12">
+                <h3 class="text-center">
+                  Jugada <span id="nombre-usuario"></span>:
+                </h3>
+                <div class="opciones">
+                  <div class="opciones__cuadro mx-2" data-option="rock">
+                    <img
+                      src="./assets/img/rock.png"
+                      alt="papel"
+                      class="img-fluid"
+                    />
+                  </div>
+                  <div class="opciones__cuadro mx-2" data-option="paper">
+                    <img
+                      src="./assets/img/paper.png"
+                      alt="papel"
+                      class="img-fluid"
+                    />
+                  </div>
+                  <div class="opciones__cuadro mx-2" data-option="scissors">
+                    <img
+                      src="./assets/img/scissors.png"
+                      alt="papel"
+                      class="img-fluid"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="tablaResultados" class="container mt-5 d-none">
+      <h3 class="text-center">Resultados del Juego</h3>
+      <div class="table-responsive">
+        <table class="table table-bordered table-striped">
+          <thead class="thead-dark">
+            <tr>
+              <th>Jugada</th>
+              <th>Usuario</th>
+              <th>CPU</th>
+              <th>Resultado</th>
+            </tr>
+          </thead>
+          <tbody id="resultadosBody">
+            <!-- Filas de resultados se insertarán aquí -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+    <script src="./assets/js/script.js"></script>
   </body>
 </html>

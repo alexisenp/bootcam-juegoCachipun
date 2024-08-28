@@ -1,3 +1,26 @@
+// guarda la cantidad de veces que se jugaran
+let totalJugadas = 0;
+let jugadaActual = 1;
+
+let resultados = [];
+
+//guarda el nombre del usuario
+let nombre = '';
+
+document
+  .getElementById('cachipunForm')
+  .addEventListener('submit', function (e) {
+    e.preventDefault();
+    totalJugadas = parseInt(document.getElementById('rondas').value);
+    nombre = document.getElementById('nombre').value;
+    //carga la cantidad de jugadas que el usuario selecciono
+    actualizarContadorJugadas();
+
+    document.getElementById('ingreso-datos').classList.add('d-none');
+    document.getElementById('juego-screen').classList.remove('d-none');
+    document.getElementById('nombre-usuario').textContent = nombre;
+  });
+
 /***************** CODIGO PARA CAMBIAR IMAGENES DE LAS OPCIONES DE LA CPU ******/
 const imagenes = [
   './assets/img/rock.png',
@@ -41,22 +64,52 @@ cuadros.forEach((cuadro) => {
       eleccionCPU = obtenerJugadaMaquina();
       // detiene el cambio de imagen en la opcion de la maquina
       clearInterval(intervalId);
-    //muestra el boton para reiniciar el juego
-      document.getElementById('boton-resultado').innerHTML = `<button id="reiniciar" class="btn btn-primary">Reiniciar Juego</button>`;
-    
-    // Agrega listener al boton para reiniciar el juego
-    document.getElementById('reiniciar').addEventListener('click', reiniciarJuego);
 
-      const resultadoTexto = document.getElementById('resultado');
-      resultadoTexto.textContent = determinarGanador(
+      jugadaActual++;
+      if (jugadaActual <= totalJugadas) {
+        //muestra el boton para reiniciar el juego
+        document.getElementById(
+          'boton-resultado'
+        ).innerHTML = `<button id="reiniciar" class="btn btn-primary">Siguiente jugada</button>`;
+        // Agrega listener al boton para reiniciar el juego
+        document
+          .getElementById('reiniciar')
+          .addEventListener('click', reiniciarJuego);
+      } else {
+        // Mostrar mensaje de fin de juego si se alcanzan las jugadas
+        document.getElementById('mensajeUsuario').innerHTML =
+          '<h3>¡Juego terminado!</h3>';
+        //muestra el boton para reiniciar el juego
+        document.getElementById(
+          'boton-resultado'
+        ).innerHTML = `<button id="resultados" class="btn btn-primary">Ver resultados</button>`;
+        // Agrega listener al boton para reiniciar el juego
+        document
+          .getElementById('resultados')
+          .addEventListener('click', verResultados);
+      }
+      let mensaje = determinarGanador(
         eleccionUsuario,
         eleccionCPU
       );
+      document.getElementById('mensajeUsuario').textContent = mensaje;
+      
+      resultados.push({
+        jugada: jugadaActual,
+        usuario: eleccionUsuario,
+        cpu: eleccionCPU,
+        resultado: mensaje,
+      });
     } else {
       alert('Solo puede seleccionar una opcion');
     }
   });
 });
+
+function actualizarContadorJugadas() {
+  document.getElementById('jugadaActual').textContent = jugadaActual.toString();
+  document.getElementById('totalJugadas').textContent = totalJugadas.toString();
+}
 
 /***************** FIN CODIGO PARA QUE SE DESTAQUE LA OPCION QUE SELECCIONE EL USUARIO ******/
 
@@ -94,20 +147,44 @@ function determinarGanador(eleccionUsuario, eleccionCPU) {
 }
 
 const reiniciarJuego = () => {
-    seleccionado = false;
-    eleccionUsuario = null;
-    eleccionCPU = null;
-    indiceImagen = 0;
-  
-    // Reiniciar el contenido del cuadro de resultado
-    document.getElementById('resultado').textContent = 'Elije tu jugada';
-    document.getElementById('boton-resultado').innerHTML = '';
-  
-    // Remover la clase activa de todas las opciones
-    document.querySelectorAll('.opciones__cuadro').forEach(cuadro => {
-      cuadro.classList.remove('opciones__cuadro--activo');
+  seleccionado = false;
+  eleccionUsuario = null;
+  eleccionCPU = null;
+  indiceImagen = 0;
+
+  // Reiniciar el contenido del cuadro de resultado
+  document.getElementById('mensajeUsuario').textContent =
+    '¿Cuál será tu próximo movimiento?';
+  document.getElementById('boton-resultado').innerHTML = '';
+
+  // Remover la clase activa de todas las opciones
+  document.querySelectorAll('.opciones__cuadro').forEach((cuadro) => {
+    cuadro.classList.remove('opciones__cuadro--activo');
+  });
+
+  // Reiniciar la rotación de imágenes
+  intervalId = setInterval(cambiarImagen, 200);
+  actualizarContadorJugadas();
+};
+
+
+// Función para agregar una fila a la tabla con los resultados
+const verResultados = () => {
+    document.getElementById('juego-screen').classList.add('d-none');
+    document.getElementById('tablaResultados').classList.remove('d-none');
+    const tablaBody = document.getElementById('resultadosBody');
+    tablaBody.innerHTML = ''; // Limpia la tabla antes de actualizarla
+
+    resultados.forEach((resultado, index) => {
+        const fila = document.createElement('tr');
+
+        fila.innerHTML = `
+            <td>${resultado.jugada}</td>
+            <td>${resultado.usuario}</td>
+            <td>${resultado.cpu}</td>
+            <td>${resultado.resultado}</td>
+        `;
+
+        tablaBody.appendChild(fila);
     });
-  
-    // Reiniciar la rotación de imágenes
-    intervalId = setInterval(cambiarImagen, 200);
-  };
+};
